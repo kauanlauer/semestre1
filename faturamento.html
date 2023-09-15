@@ -128,12 +128,30 @@
             margin-top: 120px; /* Altura do menu + margem superior */
             text-align: center;
             color: white;
+            position: relative; /* Adicione essa propriedade */
         }
 
         .slide {
             display: none;
             animation: fadeInOut 5s ease infinite;
             font-size: 50px; /* Tamanho da fonte para os elementos de texto dentro das divs .slide */
+        }
+
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('fogos4.gif') no-repeat center center;
+            background-size: cover;
+            animation: fireworks 5s ease-in-out;
+            z-index: 3;
+            display: none;
+        }
+
+        .show-fireworks .fireworks {
+            display: block;
         }
 
         @keyframes fadeInOut {
@@ -144,11 +162,19 @@
                 opacity: 1;
             }
         }
-
+        
+        @keyframes fireworks {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 
-<body>
+<body onload="init()">
     <div class="menu-button" onclick="toggleMenu()">☰ Menu</div>
     <div class="menu-container">
         <div class="menu-button" onclick="toggleMenu()">☰ Menu</div>
@@ -156,7 +182,6 @@
         <a class="menu-item" href=""></a>
         <a class="menu-item" href="index.html">Página Inicial</a>
         <a class="menu-item" href="faturamento.html">Faturamento</a>
-        <a class="menu-item" href="quantidade.html">Quantidade</a>
         <a class="menu-item" href="total.html">Top 20 Clientes</a>
         <a class="menu-item" href="industria.html">Top 20 Indústria</a>
         <a class="menu-item" href="distribuicao.html">Top 20 Distribuidor</a>
@@ -182,7 +207,8 @@
             <h1>Manaus</h1>
             <p>R$ 26.127.643</p>
         </div>
-        <div class="slide">
+        <div class="slide show-fireworks">
+            <div class="fireworks"></div>
             <h1>Total Geral</h1>
             <p>R$ 53.714.344</p>
         </div>
@@ -198,35 +224,51 @@
             <h1>REVENDA</h1>
             <p>R$ 26.559.610</p>
         </div>
-        <div class="slide">
-            <h1>Total Geral</h1>
-            <p>R$ 53.714.344</p>
-        </div>
     </div>
 
+    <audio id="fireworks-sound" src="som2.mp3" autoplay loop></audio>
+
     <script>
-        let currentIndex = 0;
-        const slides = document.querySelectorAll('.slide');
+        function init() {
+            const slides = document.querySelectorAll('.slide');
+            const fireworksSlide = document.querySelector('.show-fireworks');
+            const fireworksSound = document.getElementById('fireworks-sound');
 
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                if (i === index) {
-                    slide.style.display = 'block';
-                } else {
-                    slide.style.display = 'none';
-                }
-            });
+            let currentIndex = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    if (i === index) {
+                        slide.style.display = 'block';
+                        if (slide === fireworksSlide) {
+                            startFireworks();
+                        } else {
+                            stopFireworks();
+                        }
+                    } else {
+                        slide.style.display = 'none';
+                    }
+                });
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            }
+
+            function startFireworks() {
+                fireworksSound.play();
+            }
+
+            function stopFireworks() {
+                fireworksSound.pause();
+                fireworksSound.currentTime = 0;
+            }
+
+            setInterval(nextSlide, 5000); // Troca de slide a cada 5 segundos
+            showSlide(currentIndex); // Mostra o primeiro slide
         }
 
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % slides.length;
-            showSlide(currentIndex);
-        }
-
-        setInterval(nextSlide, 3000); // Troca de slide a cada 5 segundos
-
-        showSlide(currentIndex); // Mostra o primeiro slide
-        
         function toggleMenu() {
             const menu = document.querySelector(".menu-container");
             menu.classList.toggle("menu-open");
