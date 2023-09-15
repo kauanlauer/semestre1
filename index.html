@@ -180,32 +180,21 @@
     <img id="mapa-brasil" src="mapa.png" alt="Mapa do Brasil">
 </body>
 <script>
-    let currentIndex = 0;
-    const slides = document.querySelectorAll('.slide');
-
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            if (i === index) {
-                slide.style.display = 'block';
-            } else {
-                slide.style.display = 'none';
-            }
-        });
-    }
-
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
-    }
-
-    setInterval(nextSlide, 3000); // Troca de slide a cada 5 segundos
-
-    showSlide(currentIndex); // Mostra o primeiro slide
-    
     function toggleMenu() {
         const menu = document.querySelector(".menu-container");
         menu.classList.toggle("menu-open");
     }
+
+    // Adicionar um event listener para fechar o menu quando se clica fora dele
+    document.addEventListener("click", function(event) {
+        const menu = document.querySelector(".menu-container");
+        const menuButton = document.querySelector(".menu-button");
+
+        // Verificar se o clique não foi dentro do menu e o menu está aberto
+        if (!menu.contains(event.target) && !menuButton.contains(event.target) && menu.classList.contains("menu-open")) {
+            menu.classList.remove("menu-open");
+        }
+    });
 </script>
 </body>
 

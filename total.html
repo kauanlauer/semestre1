@@ -134,8 +134,6 @@
         <a class="menu-item" href=""></a>
         <a class="menu-item" href="index.html">Página Inicial</a>
         <a class="menu-item" href="faturamento.html">Faturamento</a>
-        <a class="menu-item" href="quantidade.html">Quantidade</a>
-        <a class="menu-item" href="total.html">Top 20 Clientes</a>
         <a class="menu-item" href="industria.html">Top 20 Indústria</a>
         <a class="menu-item" href="distribuicao.html">Top 20 Distribuidor</a>
         <a class="menu-item" href="revendas.html">Top 20 Revenda</a>
@@ -313,12 +311,22 @@
             <!-- Fim da lista de clientes -->
         </tbody>
     </table>
-
     <script>
         function toggleMenu() {
             const menu = document.querySelector(".menu-container");
             menu.classList.toggle("menu-open");
         }
+
+        // Adicionar um event listener para fechar o menu quando se clica fora dele
+        document.addEventListener("click", function(event) {
+            const menu = document.querySelector(".menu-container");
+            const menuButton = document.querySelector(".menu-button");
+
+            // Verificar se o clique não foi dentro do menu e o menu está aberto
+            if (!menu.contains(event.target) && !menuButton.contains(event.target) && menu.classList.contains("menu-open")) {
+                menu.classList.remove("menu-open");
+            }
+        });
     </script>
 </body>
 

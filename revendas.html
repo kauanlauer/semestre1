@@ -37,39 +37,59 @@
             /* Cor do texto branca */
         }
 
-        .button-container {
-            text-align: center;
-            margin-top: 20px;
+        /* Estilo do menu lateral */
+        .menu-container {
+            position: fixed;
+            top: 0;
+            left: -250px; /* Largura do menu quando está fechado */
+            width: 250px; /* Largura do menu quando está aberto */
+            height: 100%;
+            background-color: rgb(0, 113, 143); /* Cor de fundo do menu */
+            transition: left 0.3s ease;
+            z-index: 2;
+            overflow-y: auto; /* Adiciona uma barra de rolagem quando os itens do menu não cabem */
         }
 
-        .button-container button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: rgb(0, 113, 143);
-            color: #fff;
-            border: none;
-            border-radius: 25px;
+        .menu-open {
+            left: 0;
+        }
+
+        /* Estilo dos itens do menu */
+        .menu-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
             cursor: pointer;
-            margin: 5px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .menu-item {
+            padding: 10px;
+            font-size: 16px; /* Tamanho da fonte dos itens do menu */
+            color: white;
+            text-decoration: none;
+            display: block;
             transition: background-color 0.3s ease;
         }
 
-        .button-container button:hover {
-            background-color: rgb(200, 210, 5);
+        .menu-item:hover {
+            background-color: #555;
         }
 
         table {
-            margin: 0 auto;
+            margin: 20px auto 0; /* Margem superior adicionada */
             border-collapse: collapse;
             width: 80%;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            background-color: #f2f2f2; /* Nova cor de fundo da tabela */
+            background-color: #fff; /* Fundo branco */
             transition: background-color 0.3s ease;
             border-radius: 10px; /* Bordas arredondadas */
+            overflow: hidden;
         }
 
         th, td {
-            border: 1px solid #ccc;
+            border: 1px solid #ffffff;
             padding: 10px;
             text-align: left;
             transition: background-color 0.3s ease;
@@ -78,14 +98,18 @@
         th {
             background-color: rgb(0, 113, 143);
             color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1;
         }
 
         tbody tr:nth-child(odd) {
-            background-color: #e0e0e0; /* Nova cor de fundo um pouco mais clara */
+            background-color: #ffffff; /* Nova cor de fundo um pouco mais clara */
         }
 
         tbody tr:hover {
-            background-color: #d0d0d0; /* Nova cor de destaque ao passar o mouse */
+            background-color: #d0ff00; /* Nova cor de destaque ao passar o mouse */
+            font-weight: bold;
         }
 
         .faturamento-total {
@@ -93,22 +117,38 @@
             margin-top: 20px;
             font-size: 18px;
         }
+        .total {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 15px; /* Você pode ajustar o tamanho da fonte conforme desejado */
+        }
 
     </style>
 </head>
 
 <body>
+    <div class="menu-button" onclick="toggleMenu()">☰ Menu</div>
+    <div class="menu-container">
+        <div class="menu-button" onclick="toggleMenu()">☰ Menu</div>
+        <a class="menu-item" href=""></a>
+        <a class="menu-item" href=""></a>
+        <a class="menu-item" href="index.html">Página Inicial</a>
+        <a class="menu-item" href="faturamento.html">Faturamento</a>
+        <a class="menu-item" href="total.html">Top 20 Clientes</a>
+        <a class="menu-item" href="industria.html">Top 20 Indústria</a>
+        <a class="menu-item" href="distribuicao.html">Top 20 Distribuidor</a>
+
+    
+        <!-- Adicione mais itens de menu conforme necessário -->
+    </div>
+
+    <!-- Conteúdo principal -->
     <header>
-        <img src="logobr.png" alt="Logo da Empresa">
-        <h1>TOP 20 CLIENTES REVENDAS</h1>
-        <div class="button-container">
-            <button onclick="window.location.href='index.html'">Menu</button>
-            <button onclick="window.location.href='faturamento.html'">Voltar</button>
-        </div>
+                   <img src="logobr.png" alt="Logo da Empresa">
+        <h1>TOP 20 CLIENTES INDÚSTRIA</h1>
     </header>
     <div class="faturamento-total">
-        <p style="font-size: 20px; font-weight: bold; color: rgb(200, 210, 5);">FATURAMENTO TOTAL:</p>
-    <p style="font-size: 34px; font-weight: bold; color: rgb(200, 210, 5);">R$ 26.559.610</p>
+        <p style="font-size: 20px; font-weight: bold; color: rgb(200, 210, 5);">FATURAMENTO TOTAL:R$ 26.559.610</p>
 </div>
     </div>
     <table>
@@ -266,16 +306,38 @@
 <td>SP</td>
 <td>2%</td>
 </tr>
-        <tr>
-	    <td></td>
-            <td>Total top 20</td>
-            <td>R$ 14.985.737 </td>
-            <td></td>
-            <td>56%</td>
-        </tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td class="total"><b>Total</b></td>
+    <td class="total"><b>R$ 14.985.737</b></td>
+    <td class="total"><b>56%</b></td>
+</tr>
+
     </tbody>
 </table>
+<script>
+    function toggleMenu() {
+        const menu = document.querySelector(".menu-container");
+        menu.classList.toggle("menu-open");
+    }
+
+    // Adicionar um event listener para fechar o menu quando se clica fora dele
+    document.addEventListener("click", function(event) {
+        const menu = document.querySelector(".menu-container");
+        const menuButton = document.querySelector(".menu-button");
+
+        // Verificar se o clique não foi dentro do menu e o menu está aberto
+        if (!menu.contains(event.target) && !menuButton.contains(event.target) && menu.classList.contains("menu-open")) {
+            menu.classList.remove("menu-open");
+        }
+    });
+</script>
+</body>
+
+</html>
 
 </body>
 
 </html>
+

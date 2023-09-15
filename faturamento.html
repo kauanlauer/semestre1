@@ -273,6 +273,17 @@
             const menu = document.querySelector(".menu-container");
             menu.classList.toggle("menu-open");
         }
+
+        // Adicione um event listener para fechar o menu quando se clica fora dele
+        document.addEventListener("click", function(event) {
+            const menu = document.querySelector(".menu-container");
+            const menuButton = document.querySelector(".menu-button");
+
+            // Verificar se o clique não foi dentro do menu e o menu está aberto
+            if (!menu.contains(event.target) && !menuButton.contains(event.target) && menu.classList.contains("menu-open")) {
+                menu.classList.remove("menu-open");
+            }
+        });
     </script>
 </body>
 
