@@ -145,6 +145,28 @@
             }
         }
 
+ /* Estilo para a camada de fundo do menu quando está aberto */
+ .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Adiciona um fundo semi-transparente para cobrir o conteúdo quando o menu está aberto */
+            z-index: 1; /* Coloca a camada de fundo do menu acima de tudo */
+            display: none;
+        }
+
+        /* Estilos para o botão de fechar */
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+            z-index: 2; /* Coloca o botão de fechar acima de tudo */
+        }
     </style>
 </head>
 
@@ -152,12 +174,16 @@
     <div class="menu-button" onclick="toggleMenu()">☰ Menu</div>
     <div class="menu-container">
         <div class="menu-button" onclick="toggleMenu()">☰ Menu</div>
-        <a class="menu-item" href=""></a>
-        <a class="menu-item" href=""></a>
+        <br>
+        <br>
+        <br>
         <a class="menu-item" href="index.html">Página Inicial</a>
+        <h4 style="color: #ffffff;"> Filme Stretch</h4>
         <a class="menu-item" href="stretch.html">Stretch Acabado</a>
         <a class="menu-item" href="jumbo.html">Jumbo Manaus</a>
-        <a class="menu-item" href="fitapp.html">Fita PP Curitiba</a>
+        <br>
+        <h4 style="color: #ffffff;">Fita Adesivas</h4>
+        <a class="menu-item" href="fitappcuritiba.html">Fita PP Curitiba</a>
         <a class="menu-item" href="fitappmanaus.html">Fita PP Manaus</a>
         <a class="menu-item" href="fitappmanaus.html">Fita Impressa</a>
 
@@ -166,7 +192,7 @@
     </div>
     <header>
         <img src="logobr.png" alt="Logo da Empresa">
-        <h1>RELATÓRIOS DE QUANTIDADE KG/M²</h1>
+        <h1>RELATÓRIOS DE QUANTIDADE KG/M² </h1>
     </header>
     <div class="slide-container">
         <div class="slide">
@@ -214,14 +240,26 @@
             showSlide(currentIndex);
         }
 
-        setInterval(nextSlide, 5000); // Troca de slide a cada 5 segundos
+        setInterval(nextSlide, 5000);
 
-        showSlide(currentIndex); // Mostra o primeiro slide
-        
+        showSlide(currentIndex);
+
         function toggleMenu() {
             const menu = document.querySelector(".menu-container");
+            const overlay = document.querySelector(".menu-overlay");
             menu.classList.toggle("menu-open");
+            overlay.style.display = menu.classList.contains("menu-open") ? "block" : "none";
         }
+
+        // Adicione este ouvinte de evento para fechar o menu quando o usuário clicar fora dele
+        document.addEventListener("click", function (event) {
+            const menu = document.querySelector(".menu-container");
+            const overlay = document.querySelector(".menu-overlay");
+            const isClickInsideMenu = menu.contains(event.target); // Verifica se o clique foi dentro do menu
+            if (!isClickInsideMenu && menu.classList.contains("menu-open")) {
+                toggleMenu();
+            }
+        });
     </script>
 </body>
 
