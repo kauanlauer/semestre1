@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Top 20 Clientes Curitiba e Manaus</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(0, 113, 143);
+            /* Cor de fundo azul */
+            margin: 0;
+            /* Remover margens padrão */
+            padding: 0;
+            /* Remover preenchimento padrão */
+        }
+
+        header {
+            background-color: rgb(200, 210, 5);
+            /* Cor de fundo verde */
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header img {
+            height: 100px;
+            /* Altura do logotipo */
+            margin-right: 20px;
+            /* Espaçamento entre o logotipo e o título */
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            /* Cor do texto branca */
+        }
+
+        /* Estilo do menu lateral */
+        .menu-container {
+            position: fixed;
+            top: 0;
+            left: -250px; /* Largura do menu quando está fechado */
+            width: 250px; /* Largura do menu quando está aberto */
+            height: 100%;
+            background-color: rgb(0, 113, 143); /* Cor de fundo do menu */
+            transition: left 0.3s ease;
+            z-index: 2;
+            overflow-y: auto; /* Adiciona uma barra de rolagem quando os itens do menu não cabem */
+        }
+
+        .menu-open {
+            left: 0;
+        }
+
+        /* Estilo dos itens do menu */
+        .menu-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+        }
+
+        .menu-item {
+            padding: 10px;
+            font-size: 16px; /* Tamanho da fonte dos itens do menu */
+            color: white;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background-color: #555;
+        }
+
+        table {
+            margin: 20px auto 0; /* Margem superior adicionada */
+            border-collapse: collapse;
+            width: 80%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            background-color: #fff; /* Fundo branco */
+            transition: background-color 0.3s ease;
+            border-radius: 10px; /* Bordas arredondadas */
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #ffffff;
+            padding: 10px;
+            text-align: left;
+            transition: background-color 0.3s ease;
+        }
+
+        th {
+            background-color: rgb(0, 113, 143);
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #ffffff; /* Nova cor de fundo um pouco mais clara */
+        }
+
+        tbody tr:hover {
+            background-color: #d0ff00; /* Nova cor de destaque ao passar o mouse */
+            font-weight: bold;
+        }
+
+        .faturamento-total {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .total {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 15px; /* Você pode ajustar o tamanho da fonte conforme desejado */
+        }
+
+        /* Estilo dos slides */
+        .slide-container {
+            margin-top: 120px; /* Altura do menu + margem superior */
+            text-align: center;
+            color: white;
+        }
+
+        .slide {
+            display: none;
+            animation: fadeInOut 5s ease infinite;
+            font-size: 50px; /* Tamanho da fonte para os elementos de texto dentro das divs .slide */
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="menu-button" onclick="toggleMenu()">☰ Menu</div>
+    <div class="menu-container">
+        <div class="menu-button" onclick="toggleMenu()">☰ Menu</div>
+        <a class="menu-item" href=""></a>
+        <a class="menu-item" href=""></a>
+        <a class="menu-item" href="index.html">Página Inicial</a>
+        <a class="menu-item" href="faturamento.html">Faturamento</a>
+        <a class="menu-item" href="quantidade.html">Quantidade</a>
+        <a class="menu-item" href="total.html">Top 20 Clientes</a>
+        <a class="menu-item" href="industria.html">Top 20 Indústria</a>
+        <a class="menu-item" href="distribuicao.html">Top 20 Distribuidor</a>
+        <a class="menu-item" href="revendas.html">Top 20 Revenda</a>
+    
+        <!-- Adicione mais itens de menu conforme necessário -->
+    </div>
+
+    <!-- Conteúdo principal -->
+    <header>
+        <img src="logobr.png" alt="Logo da Empresa">
+        <h1>TOP 20 CLIENTES DE CURITIBA E MANAUS</h1>
+    </header>
+
+    <h1>RELATÓRIOS DE FATURAMENTO</h1>
+
+    <div class="slide-container">
+        <div class="slide">
+            <h1>Curitiba</h1>
+            <p>R$ 27.586.701</p>
+        </div>
+        <div class="slide">
+            <h1>Manaus</h1>
+            <p>R$ 26.127.643</p>
+        </div>
+        <div class="slide">
+            <h1>Total Geral</h1>
+            <p>R$ 53.714.344</p>
+        </div>
+        <div class="slide">
+            <h1>DISTRIBUIDOR</h1>
+            <p>R$ 6.949.287</p>
+        </div>
+        <div class="slide">
+            <h1>INDUSTRIA</h1>
+            <p>R$ 20.205.447</p>
+        </div>
+        <div class="slide">
+            <h1>REVENDA</h1>
+            <p>R$ 26.559.610</p>
+        </div>
+        <div class="slide">
+            <h1>Total Geral</h1>
+            <p>R$ 53.714.344</p>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.style.display = 'block';
+                } else {
+                    slide.style.display = 'none';
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        setInterval(nextSlide, 3000); // Troca de slide a cada 5 segundos
+
+        showSlide(currentIndex); // Mostra o primeiro slide
+        
+        function toggleMenu() {
+            const menu = document.querySelector(".menu-container");
+            menu.classList.toggle("menu-open");
+        }
+    </script>
+</body>
+
+</html>
