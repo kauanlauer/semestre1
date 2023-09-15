@@ -7,12 +7,16 @@
         body {
             font-family: Arial, sans-serif;
             background-color: rgb(0, 113, 143);
+            /* Cor de fundo azul */
             margin: 0;
+            /* Remover margens padrão */
             padding: 0;
+            /* Remover preenchimento padrão */
         }
 
         header {
             background-color: rgb(200, 210, 5);
+            /* Cor de fundo verde */
             padding: 10px;
             display: flex;
             justify-content: center;
@@ -21,60 +25,90 @@
 
         header img {
             height: 100px;
+            /* Altura do logotipo */
             margin-right: 20px;
+            /* Espaçamento entre o logotipo e o título */
         }
 
         h1 {
             text-align: center;
             color: #fff;
+            /* Cor do texto branca */
         }
 
-        .button-container {
-            text-align: center;
-            margin-top: 20px;
+        /* Estilo do menu lateral */
+        .menu-container {
+            position: fixed;
+            top: 0;
+            left: -250px; /* Largura do menu quando está fechado */
+            width: 250px; /* Largura do menu quando está aberto */
+            height: 100%;
+            background-color: rgb(0, 113, 143); /* Cor de fundo do menu */
+            transition: left 0.3s ease;
+            z-index: 2;
+            overflow-y: auto; /* Adiciona uma barra de rolagem quando os itens do menu não cabem */
         }
 
-        .button-container button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: rgb(0, 113, 143);
-            color: #fff;
-            border: none;
-            border-radius: 25px;
+        .menu-open {
+            left: 0;
+        }
+
+        /* Estilo dos itens do menu */
+        .menu-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
             cursor: pointer;
-            margin: 5px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .menu-item {
+            padding: 10px;
+            font-size: 16px; /* Tamanho da fonte dos itens do menu */
+            color: white;
+            text-decoration: none;
+            display: block;
             transition: background-color 0.3s ease;
         }
 
-        .button-container button:hover {
-            background-color: rgb(200, 210, 5);
+        .menu-item:hover {
+            background-color: #555;
         }
 
         table {
-            margin: 0 auto;
+            margin: 20px auto 0; /* Margem superior adicionada */
             border-collapse: collapse;
             width: 80%;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            background-color: #fff; /* Fundo branco */
+            transition: background-color 0.3s ease;
+            border-radius: 10px; /* Bordas arredondadas */
+            overflow: hidden;
         }
 
         th, td {
-            border: 1px solid #ccc;
+            border: 1px solid #ffffff;
             padding: 10px;
             text-align: left;
+            transition: background-color 0.3s ease;
         }
 
         th {
             background-color: rgb(0, 113, 143);
             color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1;
         }
 
-        tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
+        tbody tr:nth-child(odd) {
+            background-color: #ffffff; /* Nova cor de fundo um pouco mais clara */
         }
 
         tbody tr:hover {
-            background-color: #d0d0d0;
+            background-color: #d0ff00; /* Nova cor de destaque ao passar o mouse */
+            font-weight: bold;
         }
 
         .faturamento-total {
@@ -82,21 +116,40 @@
             margin-top: 20px;
             font-size: 18px;
         }
+        .total {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 15px; /* Você pode ajustar o tamanho da fonte conforme desejado */
+        }
+
     </style>
 </head>
+
 <body>
+    <div class="menu-button" onclick="toggleMenu()">☰ Menu</div>
+    <div class="menu-container">
+        <div class="menu-button" onclick="toggleMenu()">☰ Menu</div>
+        <br>
+        <br>
+        <h1>Distribuidor</h1>
+        <a class="menu-item" href="index.html">Página Inicial</a>
+        <a class="menu-item" href="quantidade.html">Voltar</a>
+        <br>
+        <a class="menu-item" href="fitappmanaustotal.html">TOP 20 Clientes</a>
+        <a class="menu-item" href="fitappmanausrevenda.html">TOP 20 Revenda</a>
+
+    
+        <!-- Adicione mais itens de menu conforme necessário -->
+    </div>
+
+    <!-- Conteúdo principal -->
     <header>
-        <img src="logobr.png" alt="Logo da Empresa">
-        <h1>TOP 20 CLIENTES DE FITA PP MANAUS DISTRIBUIDOR</h1>
-        <div class="button-container">
-            <button onclick="window.location.href='index.html'">Menu</button>
-            <button onclick="window.location.href='fitappmanaus.html'">Voltar</button>
-	   <button onclick="window.location.href='quantidade.html'">Quantidade</button>
-        </div>
+                   <img src="logobr.png" alt="Logo da Empresa">
+        <h1>TOP 20  DE FITA PP MANAUS DISTRIBUIDOR</h1>
+
     </header>
     <div class="faturamento-total">
-        <p style="font-size: 20px; font-weight: bold; color: rgb(200, 210, 5);">QUANTIDADE TOTAL:</p>
-        <p style="font-size: 34px; font-weight: bold; color: rgb(200, 210, 5);">2.890.279 M²</p>
+        <p style="font-size: 20px; font-weight: bold; color: rgb(200, 210, 5);">QUANTIDADE TOTAL:2.890.279 M²</p>
     </div>
 
     <table>
@@ -254,12 +307,29 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Total top 20</td>
-                <td>1.567.763 M²</td>
-                <td>54%</td>
+                <td class="total">TOTAL</td>
+                <td class="total">1.567.763 M²</td>
+                <td class="total">54%</td>
             </tr>
         </tfoot>
     </table>
-</body>
-
-</html>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector(".menu-container");
+            menu.classList.toggle("menu-open");
+        }
+    
+        // Adicionar um event listener para fechar o menu quando se clica fora dele
+        document.addEventListener("click", function(event) {
+            const menu = document.querySelector(".menu-container");
+            const menuButton = document.querySelector(".menu-button");
+    
+            // Verificar se o clique não foi dentro do menu e o menu está aberto
+            if (!menu.contains(event.target) && !menuButton.contains(event.target) && menu.classList.contains("menu-open")) {
+                menu.classList.remove("menu-open");
+            }
+        });
+    </script>
+    </body>
+    
+    </html>

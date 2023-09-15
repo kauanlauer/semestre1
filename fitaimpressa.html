@@ -8,12 +8,16 @@
         body {
             font-family: Arial, sans-serif;
             background-color: rgb(0, 113, 143);
+            /* Cor de fundo azul */
             margin: 0;
+            /* Remover margens padrão */
             padding: 0;
+            /* Remover preenchimento padrão */
         }
 
         header {
             background-color: rgb(200, 210, 5);
+            /* Cor de fundo verde */
             padding: 10px;
             display: flex;
             justify-content: center;
@@ -22,45 +26,108 @@
 
         header img {
             height: 100px;
+            /* Altura do logotipo */
             margin-right: 20px;
+            /* Espaçamento entre o logotipo e o título */
         }
 
         h1 {
             text-align: center;
             color: #fff;
-            font-size: 24px;
-            margin-top: 20px;
+            /* Cor do texto branca */
         }
 
+        /* Estilo do menu lateral */
         .menu-container {
-            text-align: center;
-            margin-top: 20px;
+            position: fixed;
+            top: 0;
+            left: -250px; /* Largura do menu quando está fechado */
+            width: 250px; /* Largura do menu quando está aberto */
+            height: 100%;
+            background-color: rgb(0, 113, 143); /* Cor de fundo do menu */
+            transition: left 0.3s ease;
+            z-index: 2;
+            overflow-y: auto; /* Adiciona uma barra de rolagem quando os itens do menu não cabem */
         }
 
-        .menu-container button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: rgb(0, 113, 143);
-            color: #fff;
-            border: none;
-            border-radius: 5px; /* Reduzi o raio do border-radius para torná-lo mais parecido com o padrão */
+        .menu-open {
+            left: 0;
+        }
+
+        /* Estilo dos itens do menu */
+        .menu-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
             cursor: pointer;
-            margin: 5px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .menu-item {
+            padding: 10px;
+            font-size: 16px; /* Tamanho da fonte dos itens do menu */
+            color: white;
+            text-decoration: none;
+            display: block;
             transition: background-color 0.3s ease;
         }
 
-        .menu-container button:hover {
-            background-color: rgb(200, 210, 5);
+        .menu-item:hover {
+            background-color: #555;
         }
 
-        .slide-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: calc(100vh - 120px); /* Altura ajustada para dar espaço ao cabeçalho */
-            color: white;
+        table {
+            margin: 20px auto 0; /* Margem superior adicionada */
+            border-collapse: collapse;
+            width: 80%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            background-color: #fff; /* Fundo branco */
+            transition: background-color 0.3s ease;
+            border-radius: 10px; /* Bordas arredondadas */
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #ffffff;
+            padding: 10px;
+            text-align: left;
+            transition: background-color 0.3s ease;
+        }
+
+        th {
+            background-color: rgb(0, 113, 143);
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #ffffff; /* Nova cor de fundo um pouco mais clara */
+        }
+
+        tbody tr:hover {
+            background-color: #d0ff00; /* Nova cor de destaque ao passar o mouse */
+            font-weight: bold;
+        }
+
+        .faturamento-total {
             text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .total {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 15px; /* Você pode ajustar o tamanho da fonte conforme desejado */
+        }
+
+        /* Estilo dos slides */
+        .slide-container {
+            margin-top: 120px; /* Altura do menu + margem superior */
+            text-align: center;
+            color: white;
         }
 
         .slide {
@@ -77,19 +144,53 @@
                 opacity: 1;
             }
         }
+
+ /* Estilo para a camada de fundo do menu quando está aberto */
+ .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Adiciona um fundo semi-transparente para cobrir o conteúdo quando o menu está aberto */
+            z-index: 1; /* Coloca a camada de fundo do menu acima de tudo */
+            display: none;
+        }
+
+        /* Estilos para o botão de fechar */
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+            z-index: 2; /* Coloca o botão de fechar acima de tudo */
+        }
     </style>
 </head>
+
 <body>
+    <div class="menu-button" onclick="toggleMenu()">☰ Menu</div>
+    <div class="menu-container">
+        <div class="menu-button" onclick="toggleMenu()">☰ Menu</div>
+        <br>
+        <br>
+        <br>
+        <h2 style="color: #ffffff;">Fita Impressa Curitiba</h2>
+        <a class="menu-item" href="index.html">Página Inicial</a>
+        <a class="menu-item" href="quantidade.html">Voltar</a>
+        <br>
+        <a class="menu-item" href="fitaimpressacuritibatotal.html">TOP 20 Clientes</a>
+        <br>
+        <a class="menu-item" href="fitaimpressacuritibainsdustria.html">TOP 20 Indústria</a>
+        <a class="menu-item" href="fitaimpressacuritibadistribuidor.html">TOP 20 Distribuidor</a>
+    
+        <!-- Adicione mais itens de menu conforme necessário -->
+    </div>
     <header>
         <img src="logobr.png" alt="Logo da Empresa">
-        <h1>RELATÓRIOS DE CLIENTES FITA IMPRESSA CURITIBA M²</h1>
-        <div class="menu-container">
-            <button onclick="window.location.href='quantidade.html'">Voltar</button>
-            <button onclick="window.location.href='fitaimpressacuritibatotal.html'">TOP 20</button>
-            <button onclick="window.location.href='fitaimpressacuritibainsdustria.html'">TOP 20 Idústria</button>
-            <button onclick="window.location.href='fitaimpressacuritibadistribuidor.html'">TOP 20 Distribuidor</button>
-
-        </div>
+        <h1>RELATÓRIOS DE FITA IMPRESSA CURITIBA M²</h1>
     </header>
     <div class="slide-container">
         <div class="slide">
@@ -125,9 +226,27 @@
             showSlide(currentIndex);
         }
 
-        setInterval(nextSlide, 3000); // Troca de slide a cada 5 segundos
+        setInterval(nextSlide, 5000);
 
-        showSlide(currentIndex); // Mostra o primeiro slide
+        showSlide(currentIndex);
+
+        function toggleMenu() {
+            const menu = document.querySelector(".menu-container");
+            const overlay = document.querySelector(".menu-overlay");
+            menu.classList.toggle("menu-open");
+            overlay.style.display = menu.classList.contains("menu-open") ? "block" : "none";
+        }
+
+        // Adicione este ouvinte de evento para fechar o menu quando o usuário clicar fora dele
+        document.addEventListener("click", function (event) {
+            const menu = document.querySelector(".menu-container");
+            const overlay = document.querySelector(".menu-overlay");
+            const isClickInsideMenu = menu.contains(event.target); // Verifica se o clique foi dentro do menu
+            if (!isClickInsideMenu && menu.classList.contains("menu-open")) {
+                toggleMenu();
+            }
+        });
     </script>
 </body>
+
 </html>
