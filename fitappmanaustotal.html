@@ -76,15 +76,20 @@
             background-color: #555;
         }
 
+        /* Contêiner da tabela para torná-la responsiva */
+        .table-container {
+            overflow-x: auto; /* Adiciona uma barra de rolagem horizontal quando necessário */
+        }
+
         table {
-            margin: 20px auto 0; /* Margem superior adicionada */
             border-collapse: collapse;
-            width: 80%;
+            width: 100%; /* Tabela ocupa toda a largura do contêiner */
+            max-width: 100%; /* Define o tamanho máximo da tabela */
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             background-color: #fff; /* Fundo branco */
             transition: background-color 0.3s ease;
             border-radius: 10px; /* Bordas arredondadas */
-            overflow: hidden;
+            font-size: 18px; /* Aumente o tamanho da fonte para as células da tabela */
         }
 
         th, td {
@@ -121,7 +126,6 @@
             text-transform: uppercase;
             font-size: 15px; /* Você pode ajustar o tamanho da fonte conforme desejado */
         }
-
     </style>
 </head>
 
@@ -148,7 +152,7 @@
         <h1>TOP 20 CLIENTES DE FITA PP MANAUS</h1>
     </header>
     <div class="faturamento-total">
-        <p style="font-size: 20px; font-weight: bold; color: rgb(200, 210, 5);">QUANTIDADE TOTAL:5.484.823 M²</p>
+        <p style="font-size: 20px; font-weight: bold; color: rgb(200, 210, 5);">QUANTIDADE TOTAL:5.505.421 M²</p>
 
     </div>
 

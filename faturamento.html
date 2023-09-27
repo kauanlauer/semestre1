@@ -217,60 +217,44 @@
         </div>
     </div>
 
+ 
     <script>
-        function init() {
-            const slides = document.querySelectorAll('.slide');
-            const fireworksSlide = document.querySelector('.show-fireworks');
-            const fireworksSound = document.getElementById('fireworks-sound');
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slide');
 
-            let currentIndex = 0;
-
-            function showSlide(index) {
-                slides.forEach((slide, i) => {
-                    if (i === index) {
-                        slide.style.display = 'block';
-                        if (slide === fireworksSlide) {
-                            startFireworks();
-                        } else {
-                            stopFireworks();
-                        }
-                    } else {
-                        slide.style.display = 'none';
-                    }
-                });
-            }
-
-            function nextSlide() {
-                currentIndex = (currentIndex + 1) % slides.length;
-                showSlide(currentIndex);
-            }
-
-            function startFireworks() {
-                fireworksSound.play();
-            }
-
-            function stopFireworks() {
-                fireworksSound.pause();
-                fireworksSound.currentTime = 0;
-            }
-
-            setInterval(nextSlide, 5000); // Troca de slide a cada 5 segundos
-            showSlide(currentIndex); // Mostra o primeiro slide
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.style.display = 'block';
+                } else {
+                    slide.style.display = 'none';
+                }
+            });
         }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        setInterval(nextSlide, 5000);
+
+        showSlide(currentIndex);
 
         function toggleMenu() {
             const menu = document.querySelector(".menu-container");
+            const overlay = document.querySelector(".menu-overlay");
             menu.classList.toggle("menu-open");
+            overlay.style.display = menu.classList.contains("menu-open") ? "block" : "none";
         }
 
-        // Adicione um event listener para fechar o menu quando se clica fora dele
-        document.addEventListener("click", function(event) {
+        // Adicione este ouvinte de evento para fechar o menu quando o usuário clicar fora dele
+        document.addEventListener("click", function (event) {
             const menu = document.querySelector(".menu-container");
-            const menuButton = document.querySelector(".menu-button");
-
-            // Verificar se o clique não foi dentro do menu e o menu está aberto
-            if (!menu.contains(event.target) && !menuButton.contains(event.target) && menu.classList.contains("menu-open")) {
-                menu.classList.remove("menu-open");
+            const overlay = document.querySelector(".menu-overlay");
+            const isClickInsideMenu = menu.contains(event.target); // Verifica se o clique foi dentro do menu
+            if (!isClickInsideMenu && menu.classList.contains("menu-open")) {
+                toggleMenu();
             }
         });
     </script>
